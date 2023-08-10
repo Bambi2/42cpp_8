@@ -19,13 +19,12 @@ int main()
 	MutantStack<int>::iterator ite = mstack.end();
 	++it;
 	--it;
-	while (it != ite)
-	{
-	std::cout << *it << std::endl;
-	++it;
+	while (it != ite) {
+		std::cout << *it << std::endl;
+		++it;
 	}
 	std::stack<int> s(mstack);
-	//LIST
+	// LIST
 	// std::list<int> mstack;
 	// mstack.push_back(5);
 	// mstack.push_back(17);
@@ -47,5 +46,13 @@ int main()
 	// 	++it;
 	// }
 	// std::list<int> s(mstack);
+
+	MutantStack<std::string> namesStack;
+	namesStack.push("Kanye West");
+	namesStack.push("Mac Miller");
+	MutantStack<std::string>::iterator stringIt = namesStack.begin();
+	std::cout << *(stringIt++) << std::endl;
+	std::cout << *(stringIt++) << std::endl;
+
 	return 0;
 }
