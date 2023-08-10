@@ -40,13 +40,18 @@ unsigned int Span::shortestSpan() {
 		throw NoSpanCanBeFoundException();
 	}
 
-	std::vector<int> tempV(this->nums.size(), 0);
-	std::adjacent_difference(this->nums.begin(), this->nums.end(), tempV.begin());
-	for (std::vector<int>::iterator iter = tempV.begin(); iter < tempV.end(); iter++) {
-		*iter = abs(*iter);
+	
+	std::vector<unsigned int> sortedNums = this->nums;
+	// std::sort(sortedNums.begin(), sortedNums.end());
+	for (size_t i = 0; i < sortedNums.size(); ++i) {
+		for (size_t j = 0; j < sortedNums.size()-i-1; j++) {
+			if (sortedNums[j] > sortedNums[j + 1]) {
+				std::swap(sortedNums[j], sortedNums[j + 1]);
+			}
+		}
 	}
 
-	return *std::min_element(tempV.begin() + 1, tempV.end());
+	return sortedNums[1]-sortedNums[0];
 }
 
 unsigned int Span::longestSpan() {
@@ -54,11 +59,15 @@ unsigned int Span::longestSpan() {
 		throw NoSpanCanBeFoundException();
 	}
 
-	std::vector<int> tempV(this->nums.size(), 0);
-	std::adjacent_difference(this->nums.begin(), this->nums.end(), tempV.begin());
-	for (std::vector<int>::iterator iter = tempV.begin(); iter < tempV.end(); iter++) {
-		*iter = abs(*iter);
+	std::vector<unsigned int> sortedNums = this->nums;
+	// std::sort(sortedNums.begin(), sortedNums.end());
+	for (size_t i = 0; i < sortedNums.size(); ++i) {
+		for (size_t j = 0; j < sortedNums.size()-i-1; j++) {
+			if (sortedNums[j] > sortedNums[j + 1]) {
+				std::swap(sortedNums[j], sortedNums[j + 1]);
+			}
+		}
 	}
-	
-	return *std::max_element(tempV.begin() + 1, tempV.end());
+
+	return sortedNums[sortedNums.size()-1]-sortedNums[0];
 }

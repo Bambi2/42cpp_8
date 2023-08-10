@@ -28,12 +28,13 @@ public:
 	template<typename Iterator>
 	void addManyNumbers(Iterator begin, Iterator end) {
 		int count = 0;
-		for (; begin < end; begin++) {
+		Iterator temp = begin;
+		for (; temp < end; temp++) {
 			count++;
 		}
 
 		if (nums.size() + count < this->n) {
-			nums.insert(numbers.end, begin, end)
+			nums.insert(nums.end(), begin, end);
 		} else {
 			throw std::out_of_range("You can't add more numbers");
 		}
